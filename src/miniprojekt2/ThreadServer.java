@@ -16,7 +16,7 @@ public class ThreadServer {
         public void run() {
             try {
                 System.out.println("Connected to client : " + client.getInetAddress().getHostName());
-                client.close();
+
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
