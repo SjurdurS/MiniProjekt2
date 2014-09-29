@@ -2,8 +2,12 @@ package miniprojekt2;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-
-public class ThreadServer {
+/***
+ * Publish-Subscribe System Server
+ * 
+ * @author Sjurdur
+ */
+public class PSS_Server {
 
     static class ServerThread implements Runnable {
 
