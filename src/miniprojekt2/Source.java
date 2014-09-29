@@ -16,12 +16,8 @@ public class Source {
     
     public static void Main(String[] args) throws UnknownHostException {
         
-        if (args.length != 1) {
-         System.err.println("Usage: java Source <message>");
-         System.exit(1);
-         }
 
-        String message = args[0];
+        String message = "";
         InetAddress localhost = InetAddress.getLocalHost();
         int port = 8;    
     }
