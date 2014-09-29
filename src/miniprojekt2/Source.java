@@ -23,7 +23,7 @@ public class Source {
         InetAddress localhost = InetAddress.getLocalHost();
         int PORT = 8;
         
-        Socket senderSocket = new Socket(localhost, 8);
+        Socket senderSocket = new Socket(localhost, PORT);
 
         try (InputStream is = System.in;
                 OutputStream ss = senderSocket.getOutputStream();) {
