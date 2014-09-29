@@ -5,7 +5,11 @@
  */
 package miniprojekt2;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
@@ -13,13 +17,29 @@ import java.net.UnknownHostException;
  * @author Sjurdur
  */
 public class Source {
-    
-    public static void Main(String[] args) throws UnknownHostException {
-        
 
-        String message = "";
+    public static void Main(String[] args) throws UnknownHostException, IOException {
+
         InetAddress localhost = InetAddress.getLocalHost();
-        int port = 8;    
+        int PORT = 8;
+        
+        Socket senderSocket = new Socket(localhost, 8);
+
+        try (InputStream is = System.in;
+                OutputStream ss = senderSocket.getOutputStream();) {
+            byte[] buf = new byte[1024];
+
+            int eof;
+            do {
+                eof = is.read(buf);
+                if (eof > 0) {
+                    ss.write(buf, 0, eof);
+                }
+            } while (eof >= 0);
+
+        } catch (IOException ex) {
+            System.out.println("Connection died:" + ex.getMessage());
+        }
     }
-    
+
 }
