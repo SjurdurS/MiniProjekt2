@@ -18,7 +18,7 @@ import java.net.UnknownHostException;
  */
 public class Source {
 
-    public static void Main(String[] args) throws UnknownHostException, IOException {
+    public static void main(String[] args) throws UnknownHostException, IOException {
 
         InetAddress localhost = InetAddress.getLocalHost();
         int PORT = 8;
