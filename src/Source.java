@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package miniprojekt2;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,32 +16,30 @@ import java.net.UnknownHostException;
  *
  * @author Sjurdur
  */
-public class Sink {
+public class Source {
 
-    public static void Main(String[] args) throws UnknownHostException, IOException {
+    public static void main(String[] args) throws UnknownHostException, IOException {
 
         InetAddress localhost = InetAddress.getLocalHost();
-        int PORT = 9;
+        int PORT = 8;
 
-        Socket receiverSocket = new Socket(localhost, PORT);
+        Socket senderSocket = new Socket(localhost, PORT);
 
-        try (
-                InputStream is = receiverSocket.getInputStream();
-                OutputStream os = System.out;) {
-
-            byte[] Buf = new byte[1024];
+        try (InputStream is = System.in;
+                OutputStream ss = senderSocket.getOutputStream();) {
+            byte[] buf = new byte[1024];
 
             int eof;
             do {
-                eof = is.read(Buf);
+                eof = is.read(buf);
                 if (eof > 0) {
-                    os.write(Buf, 0, eof);
+                    ss.write(buf, 0, eof);
                 }
             } while (eof >= 0);
 
         } catch (IOException ex) {
             System.out.println("Connection died:" + ex.getMessage());
-
         }
     }
+
 }
